@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.2] - 2026-08-19
+
+### Changed
+
+- 状态条**左右两侧都与输入框对齐**：工具条整行（收起时的胶囊行）与展开面板都占满输入框宽度、左右边缘与输入框对齐（此前收起态只是左侧小胶囊、面板有 10px 内缩）。
+
 ## [0.2.1] - 2026-08-19
 
 ### Fixed
