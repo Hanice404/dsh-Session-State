@@ -7,7 +7,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 ## 功能
-
+![](https://img.cdn1.vip/i/6a857b09054c0_1787132681.webp)
 | 能力 | 说明 |
 | --- | --- |
 | **折叠思考过程** | 默认开启：隐藏会话中的「Think」思考块，让回答内容直接展示；在设置中关闭后恢复原生折叠样式 |
