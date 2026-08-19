@@ -33,14 +33,17 @@
 dsh plugin --profile web add https://github.com/Hanice404/dsh-Session-Manage/archive/refs/heads/main.tar.gz
 
 # 或从本地目录（开发调试）
-dsh plugin --profile web add link:/path/to/dsh-Session-Manage
+# 推荐 file:（复制进 profile，依赖解析正确）；link: 软链接会让插件自身的依赖解析失败
+dsh plugin --profile web add file:/path/to/dsh-Session-Manage
 ```
 
 > 也可以直接在 profile 目录用 pnpm 安装：
 >
 > ```bash
-> cd ~/.dsh/profiles/web && pnpm add /path/to/dsh-Session-Manage
+> cd ~/.dsh/profiles/web && pnpm add "file:/path/to/dsh-Session-Manage"
 > ```
+>
+> > ⚠️ 不要用 `link:` 安装本插件：本 profile 使用 `nodeLinker: hoisted`，`link:` 会生成指向插件源码目录的软链接，Node 会按软链接的真实路径解析插件内部的 `@deepseek-ai/*` 导入，导致 `Cannot find package '@deepseek-ai/dsh-settings'`。`file:` 会把插件复制进 `node_modules`，与 `dsh-width` 的安装方式一致，依赖解析正常。
 
 安装后**重启 `dsh web`**（Ctrl+C 后重新运行 `dsh web`），使浏览器端加载新插件 bundle。
 
