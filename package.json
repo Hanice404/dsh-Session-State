@@ -1,6 +1,6 @@
 {
   "name": "dsh-session-state",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "DSH web 插件：折叠思考过程直接输出回答内容；在会话输入框上方增加会话活动状态条，展示 Think / Edit / Bash / Read，可展开与收起。 / DSH web plugin: folds the thinking process so answers render directly, and adds a session-activity status bar above the composer showing Think / Edit / Bash / Read, expandable and collapsible.",
   "type": "module",
   "main": "lib/index.js",
