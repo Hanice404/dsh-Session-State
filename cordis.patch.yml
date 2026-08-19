@@ -1,8 +1,8 @@
-# dsh-session-manage bundle for DeepSeek Harness (dsh).
+# dsh-session-state bundle for DeepSeek Harness (dsh).
 # Inserted into the profile's composition when this bundle is installed
 # (`dsh plugin --profile web add link:<path>`). The node half registers the
 # durable settings namespace; the client half folds the thinking process and
 # renders the session-activity status bar above the composer.
 - insert:
-    - id: dsh-session-manage
-      name: dsh-session-manage
+    - id: dsh-session-state
+      name: dsh-session-state

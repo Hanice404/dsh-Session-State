@@ -1,4 +1,4 @@
-# dsh-session-manage
+# dsh-session-state
 
 > DeepSeek Harness 的界面插件：**折叠思考过程，直接输出回答内容**；并在会话输入框上方增加一个**会话活动状态条**，实时展示 **Think / Edit / Bash / Read** 的累计次数，可展开与收起。
 >
@@ -15,7 +15,7 @@
 | **会话活动状态条** | 在输入框上方显示 `Think` / `Edit` / `Bash` / `Read` 四类活动的累计次数；**工具条与展开面板都左右两侧对齐输入框**（同宽、左右边缘对齐） |
 | **展开查看内容** | 点击状态条展开后，不再只显示数字——每个类别都是一个可折叠的分区，列出该类别**每次活动的实际内容**（思考摘要、命令、文件路径等），整个面板可滚动 |
 | **运行指示** | 运行中的类别带呼吸灯；`prefers-reduced-motion` 下自动关闭动画 |
-| **持久化** | 三个开关都保存在 `~/.dsh/settings.yaml` 的 `dsh-session-manage` 一节 |
+| **持久化** | 三个开关都保存在 `~/.dsh/settings.yaml` 的 `dsh-session-state` 一节 |
 
 ### 状态条类别归属
 
@@ -32,17 +32,17 @@
 
 ```bash
 # 从 GitHub 安装（发布后）
-dsh plugin --profile web add https://github.com/Hanice404/dsh-Session-Manage/archive/refs/heads/main.tar.gz
+dsh plugin --profile web add https://github.com/Hanice404/dsh-Session-State/archive/refs/heads/main.tar.gz
 
 # 或从本地目录（开发调试）
 # 推荐 file:（复制进 profile，依赖解析正确）；link: 软链接会让插件自身的依赖解析失败
-dsh plugin --profile web add file:/path/to/dsh-Session-Manage
+dsh plugin --profile web add file:/path/to/dsh-Session-State
 ```
 
 > 也可以直接在 profile 目录用 pnpm 安装：
 >
 > ```bash
-> cd ~/.dsh/profiles/web && pnpm add "file:/path/to/dsh-Session-Manage"
+> cd ~/.dsh/profiles/web && pnpm add "file:/path/to/dsh-Session-State"
 > ```
 >
 > > ⚠️ 不要用 `link:` 安装本插件：本 profile 使用 `nodeLinker: hoisted`，`link:` 会生成指向插件源码目录的软链接，Node 会按软链接的真实路径解析插件内部的 `@deepseek-ai/*` 导入，导致 `Cannot find package '@deepseek-ai/dsh-settings'`。`file:` 会把插件复制进 `node_modules`，与 `dsh-width` 的安装方式一致，依赖解析正常。
@@ -51,7 +51,7 @@ dsh plugin --profile web add file:/path/to/dsh-Session-Manage
 
 ## 设置
 
-三个开关都通过 DSH 设置系统持久化（`~/.dsh/settings.yaml` 的 `dsh-session-manage` 一节）：
+三个开关都通过 DSH 设置系统持久化（`~/.dsh/settings.yaml` 的 `dsh-session-state` 一节）：
 
 | 字段 | 默认值 | 说明 |
 | --- | --- | --- |
@@ -63,7 +63,7 @@ dsh plugin --profile web add file:/path/to/dsh-Session-Manage
 
 ## 工作原理
 
-- **节点端**（`lib/index.js`）：注册 `dsh-session-manage` 设置命名空间（三个布尔开关，默认 `true`），值持久化到 `~/.dsh/settings.yaml`。
+- **节点端**（`lib/index.js`）：注册 `dsh-session-state` 设置命名空间（三个布尔开关，默认 `true`），值持久化到 `~/.dsh/settings.yaml`。
 - **浏览器端**（`lib/client.js`）：
   - 通过 `ctx.settingsScope.bind` 订阅设置；`collapseThinking` 开启时注入 CSS 隐藏 `[data-chat-flow] [data-variant="think"]`，`collapseTools` 开启时隐藏 `bash / edit / write / read / search / code` 工具行——选择器限定在聊天流内，不影响详情面板等其他表面；
   - 在 `conversation.input.dock` 槽位（输入框上方的整行区域）注册状态条组件；组件用 `useLayoutEffect` 实时测量 `[data-composer-card]`（输入框）相对其父容器的左偏移与宽度，把状态条**左右两侧都对齐输入框**（同宽、左右边缘对齐；`--dsh-composer-card-max-width` 变量会被 dsh-width 等插件覆盖，故不能依赖它），工具条整行与展开面板都占满输入框宽度，窗口缩放或卡片尺寸变化时自动重新对齐；
@@ -73,12 +73,12 @@ dsh plugin --profile web add file:/path/to/dsh-Session-Manage
 ## 目录结构
 
 ```
-dsh-Session-Manage/
+dsh-Session-State/
 ├── package.json          # 包清单 + dsh.client 注入配置
 ├── dsh.plugin.json       # 插件元数据清单
 ├── cordis.patch.yml      # bundle 组合补丁（loader 条目）
 ├── lib/
-│   ├── index.js          # 节点端：注册 dsh-session-manage 设置命名空间
+│   ├── index.js          # 节点端：注册 dsh-session-state 设置命名空间
 │   └── client.js         # 浏览器端：折叠思考 + 会话活动状态条
 ├── README.md
 ├── CHANGELOG.md
