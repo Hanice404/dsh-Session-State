@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.1] - 2026-08-19
+
+### Fixed
+
+- 状态条改为**左边缘与输入框对齐**：通过 `useLayoutEffect` 实测 `[data-composer-card]` 的位置与宽度（不再依赖会被 dsh-width 覆盖的 `--dsh-composer-card-max-width` 变量），窗口缩放 / 卡片尺寸变化时自动重新对齐。
+
 ## [0.2.0] - 2026-08-19
 
 ### Added
