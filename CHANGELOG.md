@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.0] - 2026-08-19
+
+### Changed
+
+- **插件更名为 `dsh-Session-State`**（内部 id / npm 包名 / 设置命名空间为 `dsh-session-state`），GitHub 仓库同步更名为 `Hanice404/dsh-Session-State`。安装命令与设置路径同步更新。
+
 ## [0.2.3] - 2026-08-19
 
 ### Fixed
@@ -39,4 +45,4 @@ All notable changes to this project will be documented in this file.
 - 折叠思考过程：`collapseThinking`（默认开启）折叠会话中的 Think 思考块，直接输出回答内容。
 - 会话活动状态条：在输入框上方展示 `Think` / `Edit` / `Bash` / `Read` 累计次数，可展开与收起。
 - 运行中类别带呼吸灯指示，`prefers-reduced-motion` 下自动关闭动画。
-- 节点端注册 `dsh-session-manage` 设置命名空间，开关持久化到 `~/.dsh/settings.yaml`。
+- 节点端注册 `dsh-session-state` 设置命名空间，开关持久化到 `~/.dsh/settings.yaml`。
