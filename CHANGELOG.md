@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.3] - 2026-08-19
+
+### Fixed
+
+- **真正修复「与输入框左右两侧对齐」**：此前对齐测量以 `bar.parentElement` 为参照，但 DSH 的槽位渲染器会给每个槽位包一层 `display: contents` 的 `<div data-slot=…>`，其 `getBoundingClientRect()` 全为 0，导致工具条被推到错误位置。现在改为以 `[data-composer-seat]`（真实 flex 盒子）为参照测量 `[data-composer-card]` 的左偏移与宽度，并增加挂载后的一次重测 + `ResizeObserver` 持续对齐。
+
 ## [0.2.2] - 2026-08-19
 
 ### Changed
