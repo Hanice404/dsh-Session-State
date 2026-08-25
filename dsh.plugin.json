@@ -1,6 +1,6 @@
 {
   "id": "dsh-session-state",
-  "version": "0.3.1",
+  "version": "1.0.2",
   "main": "./lib/index.js",
   "description": "折叠思考过程，直接输出回答内容；在会话输入框上方增加会话活动状态条，展示 Think / Edit / Bash / Read，可展开与收起。Fold the thinking process so answers render directly; add a session-activity status bar above the composer showing Think / Edit / Bash / Read, expandable and collapsible.",
   "engines": {
