@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.2] - 2026-08-25
+
+### Added
+
+- **彻底折叠所有内容**：新增 `collapseAll` 开关，**除了最终回答之外，其他所有状态（思考、工具调用、工具结果等）都折叠**，只保留最终回答内容。默认关闭。
+
+### Changed
+
+- 版本号更新为 0.3.2
+
 ## [0.3.1] - 2026-08-19
 
 ### Fixed
